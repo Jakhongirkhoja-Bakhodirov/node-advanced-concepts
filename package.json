@@ -1,0 +1,23 @@
+{
+  "name": "node-advanced-concepts",
+  "version": "1.0.0",
+  "description": "Node Internals: Here's one of the most common interview questions you'll face when looking for a Node job: \"Can you explain Node's Event Loop?\" There are two types of engineers: those who can describe the Event Loop and those who cannot!  This course will ensure that you are incredibly well prepared to answer that most important question.  Besides being critical for interviews, knowledge of the Event Loop will give you a better understanding of how Node works internally.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Jakhongirkhoja-Bakhodirov/node-advanced-concepts.git"
+  },
+  "keywords": [],
+  "author": "Jakhongir Bakhodirov",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Jakhongirkhoja-Bakhodirov/node-advanced-concepts/issues"
+  },
+  "homepage": "https://github.com/Jakhongirkhoja-Bakhodirov/node-advanced-concepts#readme",
+  "dependencies": {
+    "express": "^4.17.3"
+  }
+}
