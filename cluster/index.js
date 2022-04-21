@@ -5,7 +5,10 @@ console.log(cluster.isMaster);
 // Is the file being executed in master mode ?
 if(cluster.isMaster) {
     //Cause index.js to be executed *again* but in child mode
-    cluster.fork();  
+    cluster.fork();
+    cluster.fork();
+    // cluster.fork();
+    // cluster.fork();  
 } else {
     //I'm a child,I'm going to act like a server
     //and do nothing else
@@ -27,6 +30,12 @@ if(cluster.isMaster) {
         });
     });
     
+    app.get('/fast' , (req,res) => {
+        res.status(200).json({
+            status:true,
+            message:'this is fast api'
+        });
+    });
     
     app.listen(port,() => {
         console.log(`Server is running on port ${port}`);
