@@ -10,7 +10,6 @@ require('./models/Blog');
 require('./services/passport');
 
 mongoose.Promise = global.Promise;
-console.log(keys.mongoURI);
 mongoose.connect(keys.mongoURI);
 
 const app = express();
