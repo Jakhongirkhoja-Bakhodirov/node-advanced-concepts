@@ -8,14 +8,23 @@ client.get = util.promisify(client.get);
 
 const exec = mongoose.Query.prototype.exec;
 
-mongoose.Query.prototype.exec = function() {
-    console.log('I am about to run a query');
-    console.log(this.getQuery());
-    console.log(this.mongooseCollection.name);
+mongoose.Query.prototype.exec = async function() {
     const key = Object.assign({} , this.getQuery() , {
         collection:this.mongooseCollection.name
     });
 
-    console.log(key);
-    return exec.apply(this,arguments);
+    //See if we have a value for 'key' in redis
+    const cacheValue = await client.get(key);
+
+    //If we do , return that
+    if(cacheValue) {
+        const doc = JSON.parse(cacheValue);
+        return Array.isArray(doc) ? doc.map(d => new this.model(d)) : new this.model(doc);
+    } 
+
+    //Otherwise, issue the query and store the result in redis
+    const result = await exec.apply(this,arguments);
+    client.set(key.toString(),JSON.stringify(result));
+    return result;
+    // return exec.apply(this,arguments);
 }
